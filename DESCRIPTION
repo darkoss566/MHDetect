@@ -1,12 +1,34 @@
 Package: MHDetect
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Type: Package
+Title: Algorithm for Detecting and Classifying Indels as MMEJ-Dependent
+Version: 0.1.0
+Authors@R: person(given = "Daria", 
+           family = "Kostka", 
+           role = c("aut", "cre"), 
+           email = "daria.kostka@polsl.pl"),
+Description: MHDetect is an algorithm for detecting and classifying indels 
+    (deletions, insertions, and MNVs) as microhomology-mediated end joining 
+    (MMEJ)-dependent. The algorithm processes VCF files to classify indels, 
+    evaluates microhomology patterns, and simulates DNA repair mechanisms 
+    for MNVs. It outputs comprehensive data for deletions, insertions, and 
+    MNVs, including dependencies on the MMEJ repair process. Users can set 
+    key parameters 'k' (length of sequences before and after indels), 'N' 
+    (minimum nucleotides for microhomology), 'genome' (reference genome), 
+    and 'Interval' (region for DNA repair simulation). The package is 
+    designed for use with R version 4.3.3 and relevant genomic libraries.
+License: GPL-3
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+LazyData: true
+Depends: R (>= 4.3.3)
+Imports: 
+    VariantAnnotation,
+    GenomicRanges,
+    BSgenome,
+    readr,
+    dplyr,
+    tidyr
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.3.2
