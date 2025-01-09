@@ -5,7 +5,7 @@ library(VariantAnnotation)
 
 test_that("MHDetect działa poprawnie", {
   # Przygotuj dane wejściowe
-  vcf <- "C:/Users/daria/OneDrive - Politechnika Śląska/MH/MHDetect/tests/testthat/EXAMPLE.gz"
+  vcf <- "MHDetect/tests/testthat/EXAMPLE.gz"
   expect_true(file.exists(vcf)) # Upewnij się, że plik istnieje
   vcf_data <- readVcf(vcf)
 
