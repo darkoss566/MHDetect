@@ -1,13 +1,12 @@
-# tests/testthat/test-MHDetect.R
 library(testthat)
 library(MHDetect)
 library(BSgenome.Hsapiens.UCSC.hg19)
 library(VariantAnnotation)
-library(stringr)
 
 test_that("MHDetect działa poprawnie", {
-  # Przygotuj dane wejściowe (przykładowy plik VCF)
-  vcf <- "C:\\Users\\daria\\OneDrive - Politechnika Śląska\\MH\\MHDetect\\test\\testthat\\VCF.gz"
+  # Przygotuj dane wejściowe
+  vcf <- "C:/Users/daria/OneDrive - Politechnika Śląska/MH/MHDetect/tests/testthat/EXAMPLE.gz"
+  expect_true(file.exists(vcf)) # Upewnij się, że plik istnieje
   vcf_data <- readVcf(vcf)
 
   # Ustaw parametry
@@ -19,5 +18,7 @@ test_that("MHDetect działa poprawnie", {
   # Uruchom funkcję MHDetect
   result <- MHDetect(vcf_data, k = k, N = N, genome = genome, Interval = Interval)
 
-
+  # Sprawdź wyniki
+  expect_type(result, "list")        # Sprawdź, czy wynik to lista
+  expect_true(length(result) > 0)   # Sprawdź, czy lista nie jest pusta
 })

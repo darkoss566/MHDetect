@@ -7,15 +7,15 @@
 MHDetect(vcf, k, N, genome, Interval)
 }
 \arguments{
-\item{vcf}{A VCF file (Variant Call Format).}
+\item{vcf}{A VCF file (Variant Call Format) object read with readVcf.}
 
 \item{k}{Number of base pairs to analyze before and after a deletion.}
 
-\item{N}{A parameter for additional analysis (describe as needed).}
+\item{N}{Minimum number of matching nucleotides to classify as MMEJ.}
 
-\item{genome}{The genome reference, e.g., "Hsapiens".}
+\item{genome}{The genome reference, e.g., BSgenome.Hsapiens.UCSC.hg19.}
 
-\item{Interval}{A parameter for specifying regions of interest.}
+\item{Interval}{Length of the region for analyzing DNA repair.}
 }
 \value{
 A data frame with classified indels and additional features.
@@ -26,10 +26,10 @@ as microhomology-mediated end joining (MMEJ)-dependent.
 }
 \examples{
 \dontrun{
-library(BSgenome.Hsapiens.UCSC.hg38)
+library(BSgenome.Hsapiens.UCSC.hg19)
 strelka <- "path/to/your/file.vcf.gz"
-vcf_data <- readVcf(strelka, genome = "hg38")
+vcf_data <- readVcf(strelka, genome = "hg19")
 result <- MHDetect(vcf_data, k = 25, N = 2,
-                   genome = BSgenome.Hsapiens.UCSC.hg38, Interval = 25)
+                   genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
 }
 }
