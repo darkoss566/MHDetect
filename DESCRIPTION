@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: person(given = "Daria", 
            family = "Kostka", 
            role = c("aut", "cre"), 
-           email = "daria.kostka@polsl.pl"),
+           email = "daria.kostka@polsl.pl")
 Description: MHDetect is an algorithm for detecting and classifying indels 
     (deletions, insertions, and MNVs) as microhomology-mediated end joining 
     (MMEJ)-dependent. The algorithm processes VCF files to classify indels, 
