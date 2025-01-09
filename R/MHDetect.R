@@ -3,11 +3,11 @@
 #' This function detects and classifies indels (deletions, insertions, and MNVs)
 #' as microhomology-mediated end joining (MMEJ)-dependent.
 #'
-#' @param vcf A VCF file (Variant Call Format).
+#' @param vcf A VCF file (Variant Call Format) object read with readVcf.
 #' @param k Number of base pairs to analyze before and after a deletion.
-#' @param N A parameter for additional analysis (describe as needed).
-#' @param genome The genome reference, e.g., "Hsapiens".
-#' @param Interval A parameter for specifying regions of interest.
+#' @param N Minimum number of matching nucleotides to classify as MMEJ.
+#' @param genome The genome reference, e.g., BSgenome.Hsapiens.UCSC.hg19.
+#' @param Interval Length of the region for analyzing DNA repair.
 #' @return A data frame with classified indels and additional features.
 #' @import GenomicRanges
 #' @import Biostrings
@@ -18,12 +18,13 @@
 #' @import stringr
 #' @examples
 #' \dontrun{
-#' library(BSgenome.Hsapiens.UCSC.hg38)
+#' library(BSgenome.Hsapiens.UCSC.hg19)
 #' strelka <- "path/to/your/file.vcf.gz"
-#' vcf_data <- readVcf(strelka, genome = "hg38")
+#' vcf_data <- readVcf(strelka, genome = "hg19")
 #' result <- MHDetect(vcf_data, k = 25, N = 2,
-#'                    genome = BSgenome.Hsapiens.UCSC.hg38, Interval = 25)
+#'                    genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
 #' }
+#' @export
 
 MHDetect=function(vcf,k,N,genome, Interval){
 
