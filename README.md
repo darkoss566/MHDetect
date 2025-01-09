@@ -8,7 +8,7 @@
 - Identifies and analyzes microhomology-mediated deletions and insertions.
 - Simulates double-strand breaks (DSBs) for MNVs and evaluates their repair mechanism via MMEJ.
 - Provides a comprehensive output with results in separate data frames for deletions, insertions, and MNVs.
-- Compatible with human genomic references such as `BSgenome.Hsapiens.UCSC.hg38`.
+- Compatible with human genomic references such as `BSgenome.Hsapiens.UCSC.hg19`.
 
 ## Algorithm Overview
 
@@ -17,7 +17,7 @@
 - **Parameters**:
   - `k`: Specifies the length (in nucleotides) of the sequence before and after the indel.
   - `N`: Defines the minimum number of matching nucleotides in the sequence after the indel for it to be classified as MMEJ-dependent.
-  - `genome`: Indicates the genome used for analysis (e.g., `BSgenome.Hsapiens.UCSC.hg38`).
+  - `genome`: Indicates the genome used for analysis (e.g., `BSgenome.Hsapiens.UCSC.hg19`).
   - `Interval`: Defines the region before and after the MNV to simulate the Template Switching mechanism.
 
 ### Steps of the Algorithm
@@ -57,16 +57,16 @@ devtools::install_github("darkoss566/MHDetect")
 install.packages(c("GenomicRanges", "Biostrings", "BSgenome", "VariantAnnotation"))
 # Load the necessary libraries
 library(MHDetect)
-library(BSgenome.Hsapiens.UCSC.hg38)
+library(BSgenome.Hsapiens.UCSC.hg19)
 
 # Specify the path to your VCF file
 vcf_file <- "path/to/your/file.vcf.gz"
 
 # Read the VCF data using the VariantAnnotation package
-vcf_data <- readVcf(vcf_file, genome = "hg38")
+vcf_data <- readVcf(vcf_file, genome = "hg19")
 
 # Run the MHDetect algorithm
-result <- MHDetect(vcf_data, k = 25, N = 2, genome = BSgenome.Hsapiens.UCSC.hg38, Interval = 25)
+result <- MHDetect(vcf_data, k = 25, N = 2, genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
 
 # View the results
 head(result)
