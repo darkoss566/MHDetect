@@ -56,17 +56,20 @@ install.packages("devtools")
 devtools::install_github("darkoss566/MHDetect")
 install.packages(c("GenomicRanges", "Biostrings", "BSgenome", "VariantAnnotation"))
 # Load the necessary libraries
+library(VariantAnnotation)
+library(BSgenome)
+library(GenomicRanges)
 library(MHDetect)
-library(BSgenome.Hsapiens.UCSC.hg19)
+library(BSgenome.Hsapiens.UCSC.hg38)
 
 # Specify the path to your VCF file
 vcf_file <- "path/to/your/file.vcf.gz"
 
 # Read the VCF data using the VariantAnnotation package
-vcf_data <- readVcf(vcf_file, genome = "hg19")
+vcf_data <- readVcf(vcf_file, genome = "hg38")
 
 # Run the MHDetect algorithm
-result <- MHDetect(vcf_data, k = 25, N = 2, genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
+result <- MHDetect(vcf_data, k = 25, N = 2, genome = BSgenome.Hsapiens.UCSC.hg38, Interval = 25)
 
 # View the results
 head(result)
