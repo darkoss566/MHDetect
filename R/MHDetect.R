@@ -24,10 +24,8 @@
 #' result <- MHDetect(vcf_data, k = 25, N = 2,
 #'                    genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
 #' }
-<<<<<<< HEAD
-#' @export
-=======
->>>>>>> 5b62589910ca19b17b503772e0c9df9086a7aa41
+@export
+
 
 MHDetect=function(vcf,k,N,genome, Interval){
 
