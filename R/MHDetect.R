@@ -16,6 +16,7 @@
 #' @import dplyr
 #' @import tidyr
 #' @import stringr
+#' @import pwalign
 #' @examples
 #' \dontrun{
 #' library(BSgenome.Hsapiens.UCSC.hg19)
