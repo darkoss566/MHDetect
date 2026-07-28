@@ -2,7 +2,7 @@
 
 **MHDetect** is an R package designed for detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs). The algorithm uses microhomology-mediated end joining (MMEJ) to classify and analyze the indels, which is particularly useful in cancer genomics and studies involving large-scale genomic datasets such as those from The Cancer Genome Atlas (TCGA).
 
-<img width="446" height="409" alt="image" src="https://github.com/user-attachments/assets/f0d7d477-42d0-4252-bcb3-5d659b8a458d" />
+<img width="44" height="40" alt="image" src="https://github.com/user-attachments/assets/f0d7d477-42d0-4252-bcb3-5d659b8a458d" />
 
 
 ## Features
