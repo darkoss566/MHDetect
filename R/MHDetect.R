@@ -456,7 +456,7 @@ MHDetect=function(vcf,k,N,genome, Interval){
           FinalSequence = randSeq5fill2
 
           ## 7. determine the impact of both MH repairs
-          mat <- nucleotideSubstitutionMatrix(match = 1, mismatch = -10, baseOnly = TRUE)
+          mat <- pwalign::nucleotideSubstitutionMatrix(match = 1, mismatch = -10, baseOnly = TRUE)
           aln = pairwiseAlignment(OriginalSequence,FinalSequence,type='global',substitutionMatrix = mat,gapOpening=10,gapExtension=1)
 
 
