@@ -22,7 +22,11 @@ Imports:
     tidyr,
     stringr
 Suggests: 
+<<<<<<< HEAD
     testthat (>= 3.0.0),
+=======
+    testthat,
+>>>>>>> 5b62589910ca19b17b503772e0c9df9086a7aa41
     knitr,
     rmarkdown
 RoxygenNote: 7.3.2

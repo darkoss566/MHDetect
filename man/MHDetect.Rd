@@ -7,6 +7,7 @@
 MHDetect(vcf, k, N, genome, Interval)
 }
 \arguments{
+<<<<<<< HEAD
 \item{vcf}{A VCF file (Variant Call Format) object read with readVcf.}
 
 \item{k}{Number of base pairs to analyze before and after a deletion.}
@@ -16,6 +17,17 @@ MHDetect(vcf, k, N, genome, Interval)
 \item{genome}{The genome reference, e.g., BSgenome.Hsapiens.UCSC.hg19.}
 
 \item{Interval}{Length of the region for analyzing DNA repair.}
+=======
+\item{vcf}{A VCF file (Variant Call Format).}
+
+\item{k}{Number of base pairs to analyze before and after a deletion.}
+
+\item{N}{A parameter for additional analysis (describe as needed).}
+
+\item{genome}{The genome reference, e.g., "Hsapiens".}
+
+\item{Interval}{A parameter for specifying regions of interest.}
+>>>>>>> 5b62589910ca19b17b503772e0c9df9086a7aa41
 }
 \value{
 A data frame with classified indels and additional features.
@@ -26,10 +38,18 @@ as microhomology-mediated end joining (MMEJ)-dependent.
 }
 \examples{
 \dontrun{
+<<<<<<< HEAD
 library(BSgenome.Hsapiens.UCSC.hg19)
 strelka <- "path/to/your/file.vcf.gz"
 vcf_data <- readVcf(strelka, genome = "hg19")
 result <- MHDetect(vcf_data, k = 25, N = 2,
                    genome = BSgenome.Hsapiens.UCSC.hg19, Interval = 25)
+=======
+library(BSgenome.Hsapiens.UCSC.hg38)
+strelka <- "path/to/your/file.vcf.gz"
+vcf_data <- readVcf(strelka, genome = "hg38")
+result <- MHDetect(vcf_data, k = 25, N = 2,
+                   genome = BSgenome.Hsapiens.UCSC.hg38, Interval = 25)
+>>>>>>> 5b62589910ca19b17b503772e0c9df9086a7aa41
 }
 }
