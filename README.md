@@ -1,6 +1,10 @@
-# MHDetect
+MHDetect is an R package designed for comprehensive genomic variant analysis, featuring two core analytical functions: MHDetect and compute_LoF.
 
-**MHDetect** is an R package designed for detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs). The algorithm uses microhomology-mediated end joining (MMEJ) to classify and analyze the indels, which is particularly useful in cancer genomics and studies involving large-scale genomic datasets such as those from The Cancer Genome Atlas (TCGA).
+The MHDetect function focuses on detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs), by utilizing microhomology-mediated end joining (MMEJ) signatures.
+
+The compute_LoF function evaluates gene inactivation (Loss-of-Function) through a modular framework that integrates data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
+
+#MHDetect
 
 <div align="center">
   <img width="600" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
