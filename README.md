@@ -3,7 +3,7 @@
 **MHDetect** is an R package designed for detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs). The algorithm uses microhomology-mediated end joining (MMEJ) to classify and analyze the indels, which is particularly useful in cancer genomics and studies involving large-scale genomic datasets such as those from The Cancer Genome Atlas (TCGA).
 
 <div align="center">
-  <img width="400" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
+  <img width="600" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
 </div>
 
 ## Features
@@ -85,7 +85,7 @@ head(result)
 The compute_LoF() function evaluates gene inactivation through a modular framework, identifying loss-of-function (LoF) events by integrating data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
 
 <div align="center">
-  <img width="400" alt="image" src="https://github.com/user-attachments/assets/8a7988ba-cdac-4e53-bdf4-27ac3bd31252" />
+  <img width="600" alt="image" src="https://github.com/user-attachments/assets/8a7988ba-cdac-4e53-bdf4-27ac3bd31252" />
 </div>
 
 
