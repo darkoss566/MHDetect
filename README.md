@@ -1,10 +1,12 @@
-# MHDetect
+# MHDetect 
 
-**MHDetect** is an R package designed for detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs). The algorithm uses microhomology-mediated end joining (MMEJ) to classify and analyze the indels, which is particularly useful in cancer genomics and studies involving large-scale genomic datasets such as those from The Cancer Genome Atlas (TCGA).
+MHDetect is an R package designed for comprehensive genomic variant analysis, featuring two core analytical functions: MHDetect and compute_LoF.
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/f0d7d477-42d0-4252-bcb3-5d659b8a458d" alt="image" width="500" height="500" />
-</div>
+The MHDetect function focuses on detecting and classifying structural variants, particularly indels (insertions, deletions, and multi-nucleotide variants, MNVs), by utilizing microhomology-mediated end joining (MMEJ) signatures.
+
+The compute_LoF function evaluates gene inactivation (Loss-of-Function) through a modular framework that integrates data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
+
+# MHDetect()
 
 ## Features
 
@@ -13,6 +15,10 @@
 - Simulates double-strand breaks (DSBs) for MNVs and evaluates their repair mechanism via MMEJ.
 - Provides a comprehensive output with results in separate data frames for deletions, insertions, and MNVs.
 - Compatible with human genomic references such as `BSgenome.Hsapiens.UCSC.hg19`.
+
+<div align="center">
+  <img width="600" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
+</div>
 
 ## Algorithm Overview
 
@@ -50,15 +56,17 @@ The algorithm outputs comprehensive data for deletions, insertions, and MNVs, in
 ## Installation
 
 You can install `MHDetect` directly from GitHub. To do so, you will need the `devtools` package.
-
-### Prerequisites
-
 Before installing the package, ensure that you have R (version 4.0 or higher) and the `devtools` package installed:
 
 ```r
 install.packages("devtools")
 devtools::install_github("darkoss566/MHDetect")
 install.packages(c("GenomicRanges", "Biostrings", "BSgenome", "VariantAnnotation"))
+```
+
+### Prerequisites
+
+```r
 # Load the necessary libraries
 library(VariantAnnotation)
 library(BSgenome)
@@ -77,4 +85,79 @@ result <- MHDetect(vcf_data, k = 25, N = 2, genome = BSgenome.Hsapiens.UCSC.hg38
 
 # View the results
 head(result)
+```
+
+
+# compute_LoF()
+
+The compute_LoF() function evaluates gene inactivation through a modular framework, identifying loss-of-function (LoF) events by integrating data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
+
+<div align="center">
+  <img width="600" alt="image" src="https://github.com/user-attachments/assets/8a7988ba-cdac-4e53-bdf4-27ac3bd31252" />
+</div>
+
+
+Genome-Agnostic Input
+While the original methodology mapped variants using the GRCh38 reference genome (Ensembl release 115, chromosomes 1-22, X, and Y), the function itself is genome-agnostic. Users can utilize any reference genome or custom gene annotation. The algorithm simply requires a pre-constructed input table (genes × samples × mutations) formatted with the required variables, allowing it to seamlessly process your custom variant mappings.
+
+## How it works
+The algorithm evaluates the provided input table and assigns a binary score (1 = inactivated, 0 = retained function) based on the following rules:
+
+- SNVs / Indels (LoF_IMPACT): The gene is marked as LoF if the variant's Ensembl VEP impact score is classified as HIGH or MODERATE.
+
+- Copy Number Variations (LoF_CopyNum): Significant loss is identified when the gene dosage (TotalCopyNumMin) falls strictly below the rounded sample ploidy level.
+
+- Structural Variants (LoF_SV):
+
+- Deletions (<DEL>): Marked as LoF if the deletion overlaps any portion of the gene.
+
+- Other SVs (<DUP>, <INV>, <TRA>): Marked as LoF if they disrupt the structural integrity of the gene (i.e., one breakpoint is located within the gene boundaries and the other externally).
+
+Final Status (LoF): A maximum-score integration is applied. A single positive criterion across any of the data streams is sufficient to classify the gene as at least partially inactivated.
+
+### Example Usage
+Below is a practical example demonstrating how compute_LoF() processes different variant scenarios from a user-supplied table:
+
+```r
+R
+library(dplyr)
+
+# 1. Create an example dataset with the required variables
+example_genes <- tibble::tibble(
+  gene_id         = c("ENSG_1", "ENSG_2", "ENSG_3", "ENSG_4", "ENSG_5"),
+  gene_name       = c("OR4F5", "AL627309", "GENE3", "GENE4", "GENE5"),
+  chr             = c("1", "1", "1", "2", "2"),
+  start           = c(69000, 134000, 367000, 621000, 738000),
+  end             = c(70000, 139000, 368000, 622000, 739000),
+  sample_id       = rep("DO46325", 5),
+  impact          = c(NA, "HIGH", NA, NA, "MODERATE"),
+  TotalCopyNumMin = c(1, 2, 0, 1, 2),
+  ploidy          = rep(2.12, 5),
+  sv_start        = c(NA, NA, NA, 621500, 738500),
+  sv_end          = c(NA, NA, NA, 623000, 740000),
+  sv_type         = c(NA, NA, NA, "<DEL>", "<DUP>")
+)
+
+# How the algorithm evaluates each row:
+# Row 1: No variants -> LoF = 0
+# Row 2: SNV impact is "HIGH" -> LoF_IMPACT = 1, Final LoF = 1
+# Row 3: TotalCopyNumMin is 0 (below rounded ploidy 2) -> LoF_CopyNum = 1, Final LoF = 1
+# Row 4: <DEL> starts in the gene, ends outside -> LoF_SV = 1, Final LoF = 1
+# Row 5: <DUP> starts in the gene, ends outside -> LoF_SV = 1, Final LoF = 1
+
+# 2. Execute the function
+res <- compute_LoF(example_genes)
+
+# 3. View the calculated LoF scores
+res %>% 
+  select(gene_name, sample_id, LoF_IMPACT, LoF_CopyNum, LoF_SV, LoF)
+
+#> # A tibble: 5 × 6
+#>   gene_name sample_id LoF_IMPACT LoF_CopyNum LoF_SV   LoF
+#>   <chr>     <chr>          <dbl>       <dbl>  <dbl> <dbl>
+#> 1 OR4F5     DO46325            0           0      0     0
+#> 2 AL627309  DO46325            1           0      0     1
+#> 3 GENE3     DO46325            0           1      0     1
+#> 4 GENE4     DO46325            0           0      1     1
+#> 5 GENE5     DO46325            1           0      1     1
 ```
