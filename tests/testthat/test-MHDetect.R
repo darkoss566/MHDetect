@@ -22,6 +22,5 @@ test_that("MHDetect works", {
   expect_identical(result$class, mh_indels_expected)
   expect_identical(result$MNV_MH_dependent, MNV_MH_dependent_expected)
   expect_identical(result$MNV_variant_caller_detected, MNV_variant_caller_detected_expected)
-  expect_identical(result$Template_switch, Template_switch_expected)
-
+  expect_identical(as_tibble(result$Template_switch), as_tibble(Template_switch_expected))
 })
