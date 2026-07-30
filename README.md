@@ -6,11 +6,7 @@ The MHDetect function focuses on detecting and classifying structural variants, 
 
 The compute_LoF function evaluates gene inactivation (Loss-of-Function) through a modular framework that integrates data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
 
-# MHDetect
-
-<div align="center">
-  <img width="600" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
-</div>
+# MHDetect()
 
 ## Features
 
@@ -19,6 +15,10 @@ The compute_LoF function evaluates gene inactivation (Loss-of-Function) through 
 - Simulates double-strand breaks (DSBs) for MNVs and evaluates their repair mechanism via MMEJ.
 - Provides a comprehensive output with results in separate data frames for deletions, insertions, and MNVs.
 - Compatible with human genomic references such as `BSgenome.Hsapiens.UCSC.hg19`.
+
+<div align="center">
+  <img width="600" alt="image" src="https://github.com/user-attachments/assets/56545b83-8739-4071-81c2-66b7371b4ef8" />
+</div>
 
 ## Algorithm Overview
 
@@ -56,15 +56,17 @@ The algorithm outputs comprehensive data for deletions, insertions, and MNVs, in
 ## Installation
 
 You can install `MHDetect` directly from GitHub. To do so, you will need the `devtools` package.
-
-### Prerequisites
-
 Before installing the package, ensure that you have R (version 4.0 or higher) and the `devtools` package installed:
 
 ```r
 install.packages("devtools")
 devtools::install_github("darkoss566/MHDetect")
 install.packages(c("GenomicRanges", "Biostrings", "BSgenome", "VariantAnnotation"))
+```
+
+### Prerequisites
+
+```r
 # Load the necessary libraries
 library(VariantAnnotation)
 library(BSgenome)
