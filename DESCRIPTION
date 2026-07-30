@@ -8,7 +8,8 @@ Authors@R: person(given = "Daria",
            email = "daria.kostka@polsl.pl")
 Description: MHDetect is an algorithm for detecting and classifying indels 
     (deletions, insertions, and MNVs) as microhomology-mediated end joining 
-    (MMEJ)-dependent.
+    (MMEJ)-dependent. The package also provides a separate utility function 
+    for computing Loss of Function (LoF) annotations.
 License: MIT
 Encoding: UTF-8
 LazyData: true
@@ -26,5 +27,5 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Config/testthat/edition: 3
