@@ -10,7 +10,7 @@ compute_LoF(df)
 \item{df}{Data frame containing variants}
 }
 \value{
-Ramka danych z dodanymi kolumnami LoF
+A data frame with appended LoF columns
 }
 \description{
 Compute Loss of Function gene

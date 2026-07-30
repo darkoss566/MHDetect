@@ -17,6 +17,8 @@
 #' @import tidyr
 #' @import stringr
 #' @import pwalign
+#' @import SummarizedExperiment
+#' @import GenomeInfoDb
 #' @examples
 #' \dontrun{
 #' library(BSgenome.Hsapiens.UCSC.hg19)

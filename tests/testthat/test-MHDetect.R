@@ -1,7 +1,7 @@
 # library(testthat)
 # library(MHDetect)
-# library(BSgenome.Hsapiens.UCSC.hg38)
-# library(VariantAnnotation)
+library(BSgenome.Hsapiens.UCSC.hg38)
+library(VariantAnnotation)
 
 VCF_test <- system.file("extdata", "EXAMPLE_fixed.vcf.gz", package = "MHDetect")
 mh_indels_expected_output <- system.file("extdata", "MH_indels_test_data.rds", package = "MHDetect")
