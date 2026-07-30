@@ -116,7 +116,6 @@ The algorithm evaluates the provided input table and assigns a binary score (1 =
 Final Status (LoF): A maximum-score integration is applied. A single positive criterion across any of the data streams is sufficient to classify the gene as at least partially inactivated.
 
 ### Example Usage
-Below is a practical example demonstrating how compute_LoF() processes different variant scenarios from a user-supplied table:
 
 ```r
 R
