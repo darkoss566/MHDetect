@@ -84,6 +84,11 @@ head(result)
 
 The compute_LoF() function evaluates gene inactivation through a modular framework, identifying loss-of-function (LoF) events by integrating data across single-nucleotide variants (SNVs), short indels, structural variants (SVs), and copy number variations (CNVs).
 
+<div align="center">
+  <img width="3138" height="1936" alt="image" src="https://github.com/user-attachments/assets/8a7988ba-cdac-4e53-bdf4-27ac3bd31252" />
+</div>
+
+
 Genome-Agnostic Input
 While the original methodology mapped variants using the GRCh38 reference genome (Ensembl release 115, chromosomes 1-22, X, and Y), the function itself is genome-agnostic. Users can utilize any reference genome or custom gene annotation. The algorithm simply requires a pre-constructed input table (genes × samples × mutations) formatted with the required variables, allowing it to seamlessly process your custom variant mappings.
 
